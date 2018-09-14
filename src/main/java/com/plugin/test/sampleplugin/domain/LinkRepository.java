@@ -2,9 +2,6 @@ package com.plugin.test.sampleplugin.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Component;
-
-@Component
 public class LinkRepository {
 
   private final List<Link> links;
