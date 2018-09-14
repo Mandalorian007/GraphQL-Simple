@@ -11,11 +11,8 @@ import graphql.GraphQLError;
 import graphql.schema.GraphQLSchema;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.json.JSONObject;
 
@@ -44,7 +41,6 @@ public class TacoPlatformApi {
 
   @POST
   public Response helloWorld(String requestString) throws Exception {
-    System.out.println(requestString);
     JSONObject jsonRequest = new JSONObject(requestString);
     ExecutionResult result = graphQL.execute(jsonRequest.getString("query"));
 
