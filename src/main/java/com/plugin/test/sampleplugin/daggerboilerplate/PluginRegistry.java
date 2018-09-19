@@ -7,11 +7,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class PluginRegistry {
-  private final List<GraphQLResolver<?>> graphQLResolvers;
+  private final List<GraphQLResolver<?>> graphQLResolvers = new ArrayList<>();
 
   @Inject
   public PluginRegistry(Query query) {
-    graphQLResolvers = new ArrayList<>();
     graphQLResolvers.add(query);
 
   }
