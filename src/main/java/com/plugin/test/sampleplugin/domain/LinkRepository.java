@@ -2,6 +2,7 @@ package com.plugin.test.sampleplugin.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class LinkRepository {
 
   private final List<Link> links;

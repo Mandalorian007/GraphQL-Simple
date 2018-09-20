@@ -5,12 +5,13 @@ import com.coxautodev.graphql.tools.SchemaParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plugin.test.sampleplugin.daggerboilerplate.DaggerPluginRegistryComponent;
 import com.plugin.test.sampleplugin.daggerboilerplate.PluginRegistryComponent;
-import com.plugin.test.sampleplugin.daggerboilerplate.ResoloversModule;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
 import graphql.schema.GraphQLSchema;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,17 +27,14 @@ public class TacoPlatformApi {
   @Inject
   public TacoPlatformApi() {
     //Dagger Boilerplate
-    PluginRegistryComponent pluginRegistryComponent = DaggerPluginRegistryComponent.builder()
-        .resoloversModule(new ResoloversModule())
-        .build();
+    PluginRegistryComponent pluginRegistryComponent = DaggerPluginRegistryComponent.create();
 
-    List<GraphQLResolver<?>> graphQLResolvers =
-        pluginRegistryComponent.buildPluginRegistry().getGraphQLResolvers();
+    Set<GraphQLResolver<?>> graphQLResolvers = pluginRegistryComponent.getGraphQLResolvers();
     //Dagger Boilerplate
 
     GraphQLSchema graphQLSchema = SchemaParser.newParser()
         .file("user-story-1.graphqls")
-        .resolvers(graphQLResolvers)
+        .resolvers(graphQLResolvers.stream().collect(Collectors.toList()))
         .build()
         .makeExecutableSchema();
 

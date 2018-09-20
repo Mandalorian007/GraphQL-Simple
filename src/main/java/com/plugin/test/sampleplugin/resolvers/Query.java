@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLRootResolver;
 import com.plugin.test.sampleplugin.domain.Link;
 import com.plugin.test.sampleplugin.domain.LinkRepository;
 import java.util.List;
+
 public class Query implements GraphQLRootResolver {
 
   private final LinkRepository linkRepository;
